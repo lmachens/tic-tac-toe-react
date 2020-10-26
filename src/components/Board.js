@@ -7,7 +7,7 @@ export default function Board() {
     return <Square value={index} />;
   }
 
-  const status = "Next player: X";
+  const status = "Next player: 🐷";
 
   return (
     <div>
