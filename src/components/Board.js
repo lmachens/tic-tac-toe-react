@@ -1,11 +1,11 @@
 import "./board.css";
 import React, { useState } from "react";
 import Square from "./Square";
-import { calculateWinner } from "../utils/game";
+import { calculateWinner, getRandomPlayer } from "../utils/game";
 
 export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
-  const [nextPlayer, setNextPlayer] = useState("🐷");
+  const [nextPlayer, setNextPlayer] = useState(getRandomPlayer());
 
   const winner = calculateWinner(squares);
 

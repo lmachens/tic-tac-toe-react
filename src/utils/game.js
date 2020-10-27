@@ -17,3 +17,7 @@ export function calculateWinner(squares) {
   }
   return null;
 }
+
+export function getRandomPlayer() {
+  return Math.random() < 0.5 ? "🐷" : "🐶";
+}
