@@ -1,14 +1,21 @@
 import "./board.css";
 import React, { useState } from "react";
 import Square from "./Square";
+import { calculateWinner } from "../utils/game";
 
 export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [isPiggyNext, setIsPiggyNext] = useState(true);
 
+  const winner = calculateWinner(squares);
+  const nextPlayer = isPiggyNext ? "🐷" : "🐶";
+
   function handleClick(index) {
+    if (winner) {
+      return;
+    }
     const newSquares = squares.slice();
-    newSquares[index] = isPiggyNext ? "🐷" : "🐶";
+    newSquares[index] = nextPlayer;
     setSquares(newSquares);
     setIsPiggyNext(!isPiggyNext);
   }
@@ -17,7 +24,7 @@ export default function Board() {
     return <Square value={squares[index]} onClick={() => handleClick(index)} />;
   }
 
-  const status = `Next player: ${isPiggyNext ? "🐷" : "🐶"}`;
+  const status = winner ? `Winner: ${winner}` : `Next player: ${nextPlayer}`;
 
   return (
     <div>
