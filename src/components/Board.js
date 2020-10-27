@@ -5,10 +5,9 @@ import { calculateWinner } from "../utils/game";
 
 export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
-  const [isPiggyNext, setIsPiggyNext] = useState(true);
+  const [nextPlayer, setNextPlayer] = useState("🐷");
 
   const winner = calculateWinner(squares);
-  const nextPlayer = isPiggyNext ? "🐷" : "🐶";
 
   function handleClick(index) {
     if (winner) {
@@ -17,7 +16,7 @@ export default function Board() {
     const newSquares = squares.slice();
     newSquares[index] = nextPlayer;
     setSquares(newSquares);
-    setIsPiggyNext(!isPiggyNext);
+    setNextPlayer(nextPlayer === "🐷" ? "🐶" : "🐷");
   }
 
   function renderSquare(index) {
