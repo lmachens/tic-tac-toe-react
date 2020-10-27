@@ -5,7 +5,7 @@ import { calculateWinner, getRandomPlayer } from "../utils/game";
 
 export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
-  const [nextPlayer, setNextPlayer] = useState(getRandomPlayer());
+  const [nextPlayer, setNextPlayer] = useState(() => getRandomPlayer());
 
   const winner = calculateWinner(squares);
 
